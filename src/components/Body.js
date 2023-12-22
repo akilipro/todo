@@ -8,7 +8,9 @@ const Body = () => {
     const [taskArray, settaskArray] = useState([])
     const [token, settoken] = useState(null)
 
-    const AddTask = ()=> {
+    const AddTask = (e)=> {
+
+        e.preventDefault();
 
         if (newTask.trim() !== '' && token==null)
             settaskArray([...taskArray, newTask])
@@ -33,25 +35,28 @@ const Body = () => {
 
 
   return (
-    <div className="mt-8 flex flex-col gap-10">
-        <p className="text-xl font-bold underline">Add a Task</p>
-        <input 
-            type='text' 
-            value={newTask} 
-            onChange={handleInput}
-            className="border border-gray-300 focus:outline-none focus:border-indigo-500 p-3 rounded-md"
-            placeholder="Write a new task here"
-            />
-        <button onClick={AddTask} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full focus:outline-none focus:shadow-outline-green w-56 self-center">
-            {token!=null?'update' : 'Add'}
-        </button>
+    <div className="mt-3 flex flex-col gap-2">
+        <form onSubmit={AddTask} className='flex justify-between items-center gap-4'>
+            <input 
+                type='text' 
+                value={newTask} 
+                onChange={handleInput}
+                className="w-5/6 border border-gray-300 focus:outline-none focus:border-indigo-500 p-3 rounded-md"
+                placeholder="Write a new task here"
+                />
+            <button onClick={AddTask} className="p-2 w-1/6 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full focus:outline-none focus:shadow-outline-green self-center">
+                {token!=null?'update' : 'Add'}
+            </button>
+
+        </form>
+        
 
         <p className="text-xl font-bold underline">List of Tasks</p>
 
-        <ul className="m-10">
+        <ul className="m-3">
             {taskArray.map((data, index)=>(
                     <li key={index} className="flex items-center justify-between bg-white p-4 border rounded-md shadow-md">
-                    <span className="text-lg">{data}</span>
+                    <span className="text-lg">{index + 1}. {data}</span>
                     <div className="flex space-x-2">
                         <button 
                             onClick={()=>updateTask(index)}

@@ -12,11 +12,11 @@ const Footer = () => {
     };
     
       return (
-        <div style = {divStyles} >
-          <p>@AkiliGroup2023</p> 
-          <p>Bienvenu Mwenyemali</p>
-        </div>
-      )
+        <div className="bg-gray-200 p-4">
+        <p className="text-gray-600">@AkiliGroup2023</p>
+        <p className="text-gray-600">Bienvenu Mwenyemali</p>
+      </div>
+    );
     }
     
 
